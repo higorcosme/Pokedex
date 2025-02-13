@@ -22,7 +22,7 @@ namespace Pokedex
             builder.Services.AddHttpClient("PokedexClient", httpClient =>
             {
                 httpClient.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
-                httpClient.Timeout = TimeSpan.FromSeconds(30);
+                httpClient.Timeout = TimeSpan.FromSeconds(40);
             });
 
             builder.Services.TryAddSingleton(_ =>
