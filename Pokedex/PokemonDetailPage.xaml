@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pokedex.PokemonDetailPage">
+    
+    <ScrollView>
+        
+        <StackLayout Padding="10">
+            <Image Source="{Binding Sprites.FrontDefault}" HeightRequest="200" HorizontalOptions="Center"/>
+            <Label Text="{Binding FormattedName}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Gender:" FontSize="16" FontAttributes="Bold"/>
+                <Label Text="{Binding Gender}" FontSize="16" Margin="5,0,0,0" TextColor="Gray"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Weight:" FontSize="16" FontAttributes="Bold"/>
+                <Label Text="{Binding Weight}" FontSize="16" Margin="5,0,0,0" TextColor="Gray"/>
+            </StackLayout>
+            
+            <Label Text="Abilities:" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Text="{Binding Abilities}" FontSize="16" HorizontalOptions="Center"/>
+            <Label Text="Type:" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                <Border StrokeShape="RoundRectangle 10" Padding="5" BackgroundColor="{Binding Types[0].TypeColor}">
+                    <Label Text="{Binding Types[0].Type.FormattedTypeName}" 
+                           FontSize="12" FontAttributes="Bold" TextColor="White" 
+                           HorizontalOptions="Center"/>
+                </Border>
+
+                <Border StrokeShape="RoundRectangle 10" Padding="5" 
+                        BackgroundColor="{Binding Types[1].TypeColor}"
+                        IsVisible="{Binding HasSecondType}">
+                    <Label Text="{Binding Types[1].Type.FormattedTypeName}" 
+                           FontSize="12" FontAttributes="Bold" TextColor="White" 
+                           HorizontalOptions="Center"/>
+                </Border>
+            </StackLayout>
+            
+        </StackLayout>
+        
+    </ScrollView>
+    
+</ContentPage>

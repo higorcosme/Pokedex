@@ -1,0 +1,59 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pokedex.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <Grid>
+        <CollectionView x:Name="collectionPokemons"
+                        RemainingItemsThreshold="1"
+                        RemainingItemsThresholdReached="OnRemainingItemsThresholdReached"
+                        SelectionMode="Single">
+            
+            <CollectionView.Header>
+                <StackLayout Padding="10" BackgroundColor="#ff5555">
+                    <Label Text="Pokédex" FontSize="32" HorizontalOptions="Center" TextColor="#ffffff" FontAttributes="Bold"/>
+                    <SearchBar Placeholder="Procurar Pokémon" TextChanged="OnSearchTextChanged"
+                               BackgroundColor="#ffffff" TextColor="#000000"
+                               PlaceholderColor="#999999"/>
+                </StackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout HorizontalItemSpacing="0"
+                                 VerticalItemSpacing="0"
+                                 Orientation="Vertical"
+                                 Span="3"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeShape="RoundRectangle 10" Padding="10" BackgroundColor="#ffffff" Margin="5">
+
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                            <Image Source="{Binding Sprites.FrontDefault}" WidthRequest="100" HeightRequest="100" Aspect="AspectFit">
+                                <Image.Shadow>
+                                    <Shadow Brush="Black" Offset="3,3" Radius="10" Opacity="0.7"/>
+                                </Image.Shadow>
+                            </Image>
+
+                            <Label Text="{Binding FormattedName}" FontSize="16" FontAttributes="Bold" TextColor="#000000" HorizontalOptions="Center"/>
+
+                            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                                <Border StrokeShape="RoundRectangle 10" Padding="5" BackgroundColor="{Binding Types[0].TypeColor}">
+                                    <Label Text="{Binding Types[0].Type.FormattedTypeName}" FontSize="12" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                                </Border>
+
+                                <Border StrokeShape="RoundRectangle 10" Padding="5" BackgroundColor="{Binding Types[1].TypeColor}" IsVisible="{Binding HasSecondType}">
+                                    <Label Text="{Binding Types[1].Type.FormattedTypeName}" FontSize="12" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                                </Border>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
